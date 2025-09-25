@@ -1,0 +1,42 @@
+<launch>
+  <!-- 右臂监控 -->
+  <node pkg="embodied_arm_driver" type="current_safety_monitor" name="current_safety_monitor_r" output="screen">
+    <param name="safety_enabled" value="true"/>
+    <param name="safety_level" value="2"/>
+    <param name="joint_current_threshold" value="5000.0"/>
+    <param name="lift_current_threshold" value="5000.0"/>
+    <param name="trip_hold_seconds" value="0.5"/>
+
+    <!-- 输入话题（来自驱动） -->
+    <remap from="rm_driver/Udp_Joint_Current" to="/r_arm/rm_driver/Udp_Joint_Current"/>
+    <remap from="rm_driver/LiftState" to="/r_arm/rm_driver/LiftState"/>
+    <remap from="rm_driver/Udp_Arm_Current_status" to="/r_arm/rm_driver/Udp_Arm_Current_status"/>
+
+    <!-- 输出动作（发回驱动） -->
+    <remap from="rm_driver/Emergency_Stop" to="/r_arm/rm_driver/Emergency_Stop"/>
+    <remap from="rm_driver/SetArmPower" to="/r_arm/rm_driver/SetArmPower"/>
+
+    <!-- 监控状态输出（带区分） -->
+    <remap from="safety_status" to="/current_safety_monitor/safety_status_r"/>
+  </node>
+
+  <!-- 左臂监控 -->
+  <node pkg="embodied_arm_driver" type="current_safety_monitor" name="current_safety_monitor_l" output="screen">
+    <param name="safety_enabled" value="true"/>
+    <param name="safety_level" value="2"/>
+    <param name="joint_current_threshold" value="5000.0"/>
+    <param name="lift_current_threshold" value="5000.0"/>
+    <param name="trip_hold_seconds" value="0.5"/>
+
+    <remap from="rm_driver/Udp_Joint_Current" to="/l_arm/rm_driver/Udp_Joint_Current"/>
+    <remap from="rm_driver/LiftState" to="/l_arm/rm_driver/LiftState"/>
+    <remap from="rm_driver/Udp_Arm_Current_status" to="/l_arm/rm_driver/Udp_Arm_Current_status"/>
+
+    <remap from="rm_driver/Emergency_Stop" to="/l_arm/rm_driver/Emergency_Stop"/>
+    <remap from="rm_driver/SetArmPower" to="/l_arm/rm_driver/SetArmPower"/>
+
+    <remap from="safety_status" to="/current_safety_monitor/safety_status_l"/>
+  </node>
+</launch>
+
+

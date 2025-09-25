@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 任务执行Launch文件 - 启动完整的机器人任务执行演示 -->
+    
+    <!-- 参数配置 -->
+    <arg name="debug" default="false" doc="是否启用调试模式" />
+    <arg name="output" default="screen" doc="输出模式: screen/log" />
+    <arg name="respawn" default="false" doc="是否自动重启节点" />
+    <arg name="start_control_nodes" default="true" doc="是否启动控制节点" />
+    
+    <!-- ========== 控制节点启动 ========== -->
+    
+    <!-- 启动AGV控制节点 -->
+    <include file="$(find embodied_arm_driver)/launch/dual_arm_75_driver.launch" />
+    
+    <!-- 启动夹爪控制节点 -->
+    <!-- <include file="$(find gripper_control_handler)/launch/gripper_control.launch" 
+             if="$(arg start_control_nodes)" /> -->
+    
+
+    <!-- ========== 任务执行节点 ========== -->
+    
+    <!-- 启动任务执行主节点 -->
+    <node name="execute_tasks" 
+          pkg="task_planning" 
+          type="execute_tasks.py" 
+          output="$(arg output)"
+          respawn="$(arg respawn)">
+        
+        <!-- 节点参数 -->
+        <param name="node_name" value="execute_tasks" />
+        <param name="debug_mode" value="$(arg debug)" />
+        
+        <!-- 如果启用调试模式，设置更详细的日志级别 -->
+        <param name="rosconsole_config_file" 
+               value="$(find task_planning)/config/rosconsole.conf" 
+               if="$(arg debug)" />
+               
+        <!-- 延迟启动，等待控制节点准备就绪 -->
+        <param name="startup_delay" value="5.0" if="$(arg start_control_nodes)" />
+    </node>
+    
+    <!-- Launch文件信息 -->
+    <param name="launch_info" 
+           value="完整任务执行系统已启动 - 包含AGV、机械臂和夹爪控制节点" />
+
+</launch>

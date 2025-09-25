@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 任务执行Launch文件 - 启动完整的机器人任务执行演示 -->
+    
+    <!-- 参数配置 -->
+    <arg name="debug" default="false" doc="是否启用调试模式" />
+    <arg name="output" default="screen" doc="输出模式: screen/log" />
+    <arg name="respawn" default="false" doc="是否自动重启节点" />
+    
+    <!-- ========== 控制节点启动 ========== -->
+    
+    <!-- 启动camera节点 -->
+    <include file="$(find embodied_camera)/launch/d435_camera_pub.launch" />
+    
+
+    <!-- ========== 任务执行节点 ========== -->
+    
+    <!-- 启动任务执行主节点 -->
+    <node name="camera_detection" 
+          pkg="task_planning" 
+          type="camera_detection.py" 
+          output="$(arg output)"
+          respawn="$(arg respawn)">
+        
+        <!-- 节点参数 -->
+        <param name="node_name" value="camera_detection" />
+        <param name="debug_mode" value="$(arg debug)" />
+        
+        <!-- 如果启用调试模式，设置更详细的日志级别 -->
+        <param name="rosconsole_config_file" 
+               value="$(find task_planning)/config/rosconsole.conf" 
+               if="$(arg debug)" />
+               
+        <!-- 延迟启动，等待控制节点准备就绪 -->
+        <param name="startup_delay" value="5.0" />
+    </node>
+    
+    <!-- Launch文件信息 -->
+    <param name="launch_info" 
+           value="摄像头检测与分割功能已启动 - 包含摄像头节点" />
+
+</launch>
