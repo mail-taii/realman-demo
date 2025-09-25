@@ -1,0 +1,14 @@
+<launch>
+  <node pkg="embodied_arm_driver" type="current_safety_monitor" name="current_safety_monitor" output="screen">
+    <param name="safety_enabled" value="true" />
+    <param name="safety_level" value="2" />
+    <param name="joint_current_threshold" value="2.0" />
+    <param name="lift_current_threshold" value="3.0" />
+    <param name="trip_hold_seconds" value="0.1" />
+    <!-- 可选：每关节独立阈值，如 6 轴机械臂
+    <rosparam param="joint_thresholds">[2.0, 2.0, 2.0, 2.0, 2.0, 2.0]</rosparam>
+    -->
+  </node>
+</launch>
+
+

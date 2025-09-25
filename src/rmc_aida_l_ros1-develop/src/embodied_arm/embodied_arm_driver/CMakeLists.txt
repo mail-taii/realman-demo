@@ -203,3 +203,7 @@ add_executable(arm_driver src/arm_driver.cpp src/cJSON.c)
 target_link_libraries(arm_driver ${catkin_LIBRARIES})
 #add_dependencies(arm_driver arm_driver_generate_messages_cpp)
 #add_definitions(-std=c99) 
+
+## current_safety_monitor node
+add_executable(current_safety_monitor src/current_safety_monitor.cpp)
+target_link_libraries(current_safety_monitor ${catkin_LIBRARIES})
