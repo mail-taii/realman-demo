@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>task_planning</name>
+  <version>1.0.0</version>
+  <description>ROS分布式任务规划系统 - 硬件控制协调器</description>
+
+  <maintainer email="developer@embodied-robot.com">Embodied Robot Team</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>std_srvs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>embodied_arm_msgs</build_depend>
+  <build_depend>embodied_servo</build_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>actionlib_msgs</build_depend> 
+  <build_depend>sensor_msgs</build_depend> 
+
+  <build_export_depend>rospy</build_export_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>embodied_arm_msgs</exec_depend>
+  <exec_depend>embodied_servo</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+  <exec_depend>agv_control_handler</exec_depend>
+  <exec_depend>arm_control_handler</exec_depend>
+  <exec_depend>gripper_control_handler</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend> 
+
+  <export>
+  </export>
+</package>

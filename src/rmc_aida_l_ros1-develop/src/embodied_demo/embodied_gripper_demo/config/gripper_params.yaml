@@ -1,0 +1,55 @@
+# 夹爪控制参数配置文件
+
+# 多夹爪配置
+grippers:
+  - id: 0
+    ip: "169.254.128.18"
+    port: 8080
+    name: "左夹爪"
+  - id: 1
+    ip: "169.254.128.19"
+    port: 8080
+    name: "右夹爪"
+
+# 机器人连接参数（向后兼容）
+robot:
+  ip: "169.254.128.18"
+  port: 8080
+  timeout: 10.0
+
+# 夹爪参数
+gripper:
+  # 位置参数
+  open_position: 0      # 打开位置
+  close_position: 12000 # 闭合位置
+  
+  # 力矩参数
+  default_torque: 50    # 默认力矩
+  max_torque: 100       # 最大力矩
+  
+  # 超时参数
+  position_timeout: 3.0 # 位置等待超时时间(秒)
+  
+  # MODBUS参数
+  modbus:
+    port: 1
+    baudrate: 115200
+    timeout: 2
+    device_id: 1
+
+# 寄存器地址
+registers:
+  enable: 256      # 启用夹爪
+  position_high: 258  # 位置高位
+  position_low: 259   # 位置低位
+  trigger: 264        # 触发运动
+  status: 1540        # 状态读取
+
+# ROS话题名称
+topics:
+  gripper_pick: "/gripper_pick"
+  gripper_set: "/gripper_set"
+  gripper_status: "/gripper_status"
+
+# 日志级别
+log_level: "INFO"

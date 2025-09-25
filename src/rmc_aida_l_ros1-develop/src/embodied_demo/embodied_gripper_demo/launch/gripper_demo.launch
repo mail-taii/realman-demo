@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- 夹爪控制演示启动文件 -->
+  
+  <!-- 参数设置 -->
+  <arg name="demo_mode" default="false"/>
+  <arg name="multi_gripper" default="true"/>
+  <arg name="single_gripper" default="false"/>
+  <arg name="custom_ip" default=""/>
+  <arg name="custom_torque" default="50"/>
+  
+  <!-- 加载配置文件 -->
+  <rosparam file="$(find embodied_gripper_demo)/config/gripper_params.yaml" command="load"/>
+  
+  <!-- 演示模式 - 使用配置文件中的参数 -->
+  <group if="$(arg demo_mode)">
+    <node name="gripper_demo_sequence" pkg="embodied_gripper_demo" type="gripper_demo.py" args="demo" output="screen"/>
+  </group>
+  
+  <!-- 多夹爪ROS节点模式 (默认) -->
+  <group if="$(arg multi_gripper)">
+    <group unless="$(arg demo_mode)">
+      <group unless="$(arg single_gripper)">
+        <node name="multi_gripper_controller" pkg="embodied_gripper_demo" type="gripper_demo.py" args="multi" output="screen"/>
+      </group>
+    </group>
+  </group>
+  
+  <!-- 单夹爪ROS节点模式 -->
+  <group if="$(arg single_gripper)">
+    <group unless="$(arg demo_mode)">
+      <group unless="$(arg multi_gripper)">
+        <node name="single_gripper_controller" pkg="embodied_gripper_demo" type="gripper_demo.py" args="single" output="screen">
+          <param name="custom_ip" value="$(arg custom_ip)"/>
+          <param name="custom_torque" value="$(arg custom_torque)"/>
+        </node>
+      </group>
+    </group>
+  </group>
+  
+</launch>

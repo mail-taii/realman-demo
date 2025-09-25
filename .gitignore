@@ -1,0 +1,82 @@
+# ROS编译生成的文件
+build/
+devel/
+install/
+log/
+
+# Catkin工具生成的文件
+.catkin_tools/
+.catkin_workspace
+
+# CMake生成的文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+CTestConfiguration.ini
+CTestCustom.cmake
+
+# 编译生成的可执行文件
+*.o
+*.so
+*.a
+*.exe
+*.out
+
+# Python编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+
+# 备份文件
+*.bak
+*.backup
+
+# 文档编译文件
+*.aux
+*.toc
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# 大文件 - 机器学习模型文件
+*.pt
+*.pth
+*.h5
+*.pkl
+*.joblib
+
+# 大文件 - 3D模型文件
+*.STL
+*.stl
+*.obj
+*.fbx
+*.blend
+
+# 大文件 - 文档文件
+*.pdf
+*.docx
+*.doc
+
+# 有问题的目录
+images/
+src/rmc_aida_l_ros1-develop/images/
