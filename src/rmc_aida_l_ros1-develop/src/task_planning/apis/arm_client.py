@@ -92,15 +92,6 @@ class ArmClient:
         self.is_arrive()
         return True
 
-    def home_position(self, arm_side):
-        """回零点"""
-        if arm_side == "left":
-            return self.move_joint(arm_side, [-12.177, -106.699, 4.056, -3.49, 8.441, -31.897, 58.77])
-        elif arm_side == "right":
-            return self.move_joint(arm_side, [1.551, 87.529, 6.347, 71.049, -2.261, -14.856, -0.056])
-        else:
-            rospy.logerr(f"无效的手臂选择: {arm_side}")
-            return False
             
     def get_quaternion(self,angles):
         return list(quaternion_from_euler(angles[0],angles[1],angles[2]))

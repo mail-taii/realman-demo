@@ -13,9 +13,9 @@
     <!-- 启动AGV控制节点 -->
     <include file="$(find embodied_arm_driver)/launch/dual_arm_75_driver.launch" />
     
-    <!-- 启动夹爪控制节点 -->
-    <!-- <include file="$(find gripper_control_handler)/launch/gripper_control.launch" 
-             if="$(arg start_control_nodes)" /> -->
+    <!-- 启动机械臂安全监控节点 -->
+    <include file="$(find embodied_arm_driver)/launch/current_safety_monitor.launch" />
+
     
 
     <!-- ========== 任务执行节点 ========== -->

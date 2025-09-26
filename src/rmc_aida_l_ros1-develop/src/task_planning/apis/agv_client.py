@@ -65,40 +65,7 @@ class AGVClient:
 
     
     def send_navigation_task(self, target_mark, task_id=1, task_exect=1, task_type=1, direction=0):
-        """
-        发送AGV导航任务
-        
-        向agv_control节点发送导航任务，控制AGV移动到指定点位。
-        该方法是AGV控制的核心API接口。
-        
-        参数:
-            target_mark (str): 目标点位标记，如 "A1", "B2", "C3" 等
-                              必须是地图中已定义的有效点位标识
-            task_id (int): 任务唯一标识符，用于跟踪任务状态
-                          默认值: 1
-            task_exect (int): 任务执行模式
-                             1 = 正常执行模式 (默认)
-                             其他值根据底盘系统定义
-            task_type (int): 任务类型标识
-                            1 = 导航任务 (默认)
-                            其他值根据系统需求定义
-            direction (int): 到达目标点后的朝向角度
-                           单位: 度 (0-359)
-                           0 = 北方向 (默认)
-        
-        返回:
-            None: 该方法为异步调用，通过status_callback接收执行结果
-        
-        异常:
-            如果发布器未连接，任务可能无法发送
-        
-        使用示例:
-            # 导航到A1点位
-            client.send_navigation_task("A1")
-            
-            # 导航到B2点位，并设置朝向为90度
-            client.send_navigation_task("B2", task_id=2, direction=90)
-        """
+
         # 创建导航任务消息
         req = ExecTaskRequest()
         req.task_id = task_id
