@@ -211,9 +211,10 @@ class GripperClient:
         with self.result_lock:
             self.results['read'] = None
         # 轮询读取完成标志寄存器（手册：1538 位置到达=1）
-        self.read_register(gripper_side, 0x0602, 1, timeout=0.3)
+        
         while time.time() - start_time < timeout:
             # 每轮以较短超时读取一次，避免长阻塞
+            self.read_register(gripper_side, 0x0602, 1, timeout=0.3)
             with self.result_lock:
                 r = self.results.get('read')
             if r and r.state and hasattr(r, 'data') and len(r.data) > 0:
