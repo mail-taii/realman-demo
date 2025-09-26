@@ -47,3 +47,18 @@ _deps/
 
 # Test results
 test_results/
+
+# Large model files
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Large documents
+*.docx
+*.pdf
+
+# Large images
+*.jpg
+*.png
+*.jpeg
